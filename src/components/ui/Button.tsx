@@ -1,5 +1,8 @@
+"use client";
+
 import { forwardRef } from "react";
 import type { ButtonHTMLAttributes } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 
 // text-jetta-on-accent-{dark,light} (not text-jetta-black/ice) on all
@@ -32,18 +35,31 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "primary", size = "md", ...props }, ref) => {
+  ({ className, variant = "primary", size = "md", children, ...props }, ref) => {
     return (
       <button
         ref={ref}
         className={cn(
-          "inline-flex min-h-11 items-center justify-center gap-2 rounded-full font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          "relative inline-flex min-h-11 items-center justify-center overflow-hidden rounded-full font-semibold transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           variants[variant],
           sizes[size],
           className,
         )}
         {...props}
-      />
+      >
+        {/* Light-sweep — plays on its own continuous loop (not hover-gated)
+            so buttons read as "alive" like the rest of the page's motion
+            language, instead of only reacting on interaction. Respects
+            prefers-reduced-motion via the app-wide MotionConfig. */}
+        <motion.span
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/70 to-transparent"
+          initial={{ x: "-100%" }}
+          animate={{ x: "100%" }}
+          transition={{ duration: 1.1, repeat: Infinity, repeatDelay: 2.4, ease: "easeInOut" }}
+        />
+        <span className="relative z-[1] inline-flex items-center gap-2">{children}</span>
+      </button>
     );
   },
 );

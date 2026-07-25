@@ -25,9 +25,13 @@ export function HeroShowcase({
         alt=""
         fill
         priority
-        className="object-cover opacity-60"
+        className="object-cover opacity-60 [html[data-theme=light]_&]:opacity-100"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-jetta-black via-jetta-black/70 to-jetta-black/20" />
+      {/* Dark scrim for text legibility over the photo — only makes sense
+          against a dark theme background; jetta-black flips to a light hex
+          in light mode, so at opacity>0 it washes the image pale instead of
+          darkening it. Zeroed out there per explicit product decision. */}
+      <div className="absolute inset-0 bg-gradient-to-t from-jetta-black via-jetta-black/70 to-jetta-black/40 [html[data-theme=light]_&]:opacity-0" />
       <CircuitLines className="text-jetta-blue opacity-70" />
       <GlowRings />
       <ParticleField />
@@ -36,10 +40,10 @@ export function HeroShowcase({
         <span className="text-xs font-semibold tracking-[0.3em] text-jetta-gold uppercase">
           Novidades 2026
         </span>
-        <h1 className="font-display text-4xl leading-tight font-bold text-jetta-ice sm:text-5xl lg:text-6xl">
+        <h1 className="font-display text-4xl leading-tight font-bold text-jetta-on-accent-light sm:text-5xl lg:text-6xl">
           O próximo nível começa nos seus pés.
         </h1>
-        <p className="max-w-xl text-jetta-metal">
+        <p className="max-w-xl text-jetta-on-accent-light/70">
           Tênis selecionados para quem busca estilo, desempenho e presença.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3">

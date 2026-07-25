@@ -9,6 +9,7 @@ import { BrandMarquee } from "@/components/home/BrandMarquee";
 import { Testimonials } from "@/components/home/Testimonials";
 import { FinalCta } from "@/components/home/FinalCta";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { LightBeams } from "@/components/decor/LightBeams";
 
 export default async function HomePage() {
   const now = new Date();
@@ -35,6 +36,8 @@ export default async function HomePage() {
 
   return (
     <>
+      <LightBeams />
+
       <HeroShowcase storeName={settings.storeName} whatsappNumber={settings.whatsappNumber} />
 
       <CategoryGrid categories={categories} />

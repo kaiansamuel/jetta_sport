@@ -43,7 +43,7 @@ export function LaunchesCarousel({
               type="button"
               aria-label="Anterior"
               onClick={() => emblaApi?.scrollPrev()}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-jetta-metal/30 text-jetta-ice hover:border-jetta-blue hover:text-jetta-blue"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-jetta-metal/30 text-jetta-ice hover:border-jetta-blue hover:text-jetta-blue"
             >
               <ChevronLeft className="h-4 w-4" />
             </button>
@@ -51,7 +51,7 @@ export function LaunchesCarousel({
               type="button"
               aria-label="Próximo"
               onClick={() => emblaApi?.scrollNext()}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-jetta-metal/30 text-jetta-ice hover:border-jetta-blue hover:text-jetta-blue"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-jetta-metal/30 text-jetta-ice hover:border-jetta-blue hover:text-jetta-blue"
             >
               <ChevronRight className="h-4 w-4" />
             </button>
