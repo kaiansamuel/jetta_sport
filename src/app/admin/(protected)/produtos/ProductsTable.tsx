@@ -68,7 +68,7 @@ export function ProductsTable({ products }: { products: ProductRow[] }) {
               <td className="p-3 text-jetta-ice">{formatCurrency(product.price)}</td>
               <td className="p-3 text-jetta-metal">
                 {product.totalStock === 0 ? (
-                  <span className="text-jetta-red">Esgotado</span>
+                  <span className="text-jetta-red-text">Esgotado</span>
                 ) : (
                   product.totalStock
                 )}
@@ -80,7 +80,7 @@ export function ProductsTable({ products }: { products: ProductRow[] }) {
                   onClick={() => handleToggle(product.id, product.isActive)}
                   className={
                     product.isActive
-                      ? "rounded-full bg-jetta-blue/15 px-2 py-1 text-xs text-jetta-cyan"
+                      ? "rounded-full bg-jetta-blue/15 px-2 py-1 text-xs text-jetta-cyan-text"
                       : "rounded-full bg-jetta-metal/15 px-2 py-1 text-xs text-jetta-metal"
                   }
                 >

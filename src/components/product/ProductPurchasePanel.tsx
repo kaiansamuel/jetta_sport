@@ -114,7 +114,7 @@ export function ProductPurchasePanel({
         <div className="mt-2 flex items-baseline gap-2">
           {product.isPromotion && product.promotionalPrice ? (
             <>
-              <span className="font-display text-2xl font-bold text-jetta-cyan">
+              <span className="font-display text-2xl font-bold text-jetta-cyan-text">
                 {formatCurrency(product.promotionalPrice)}
               </span>
               <span className="text-sm text-jetta-metal line-through">
@@ -145,7 +145,7 @@ export function ProductPurchasePanel({
         <p
           className={cn(
             "text-xs",
-            selectedVariant.stock > 0 ? "text-jetta-cyan" : "text-jetta-red",
+            selectedVariant.stock > 0 ? "text-jetta-cyan-text" : "text-jetta-red-text",
           )}
         >
           {selectedVariant.stock > 0

@@ -263,7 +263,7 @@ function FilterChip({
       className={cn(
         "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
         active
-          ? "border-jetta-blue bg-jetta-blue/15 text-jetta-cyan"
+          ? "border-jetta-blue bg-jetta-blue/15 text-jetta-cyan-text"
           : "border-jetta-metal/30 text-jetta-metal hover:border-jetta-blue hover:text-jetta-blue",
       )}
     >

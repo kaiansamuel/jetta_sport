@@ -39,7 +39,7 @@ export function Pagination({
           className={cn(
             "flex h-10 w-10 items-center justify-center rounded-full text-sm",
             p === page
-              ? "bg-jetta-blue text-jetta-black font-semibold"
+              ? "bg-jetta-blue text-jetta-on-accent-dark font-semibold"
               : "text-jetta-metal hover:text-jetta-blue",
           )}
         >

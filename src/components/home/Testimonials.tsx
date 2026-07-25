@@ -28,7 +28,7 @@ export function Testimonials({ instagramUrl }: { instagramUrl?: string | null })
               href={instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-jetta-blue hover:underline"
+              className="text-jetta-blue-text hover:underline"
             >
               Ver no Instagram
             </Link>

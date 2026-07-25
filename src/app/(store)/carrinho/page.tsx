@@ -116,7 +116,7 @@ export default function CarrinhoPage() {
         >
           Limpar carrinho
         </button>
-        <Link href="/catalogo" className="text-sm text-jetta-blue hover:underline">
+        <Link href="/catalogo" className="text-sm text-jetta-blue-text hover:underline">
           Continuar comprando
         </Link>
       </div>

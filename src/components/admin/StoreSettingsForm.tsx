@@ -174,8 +174,8 @@ export function StoreSettingsForm({ initialValues }: { initialValues: StoreSetti
         </div>
       </Card>
 
-      {error && <p className="text-sm text-jetta-red">{error}</p>}
-      {saved && <p className="text-sm text-jetta-cyan">Configurações salvas.</p>}
+      {error && <p className="text-sm text-jetta-red-text">{error}</p>}
+      {saved && <p className="text-sm text-jetta-cyan-text">Configurações salvas.</p>}
 
       <Button type="submit" disabled={saving}>
         {saving ? "Salvando..." : "Salvar configurações"}

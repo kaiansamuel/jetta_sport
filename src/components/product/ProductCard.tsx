@@ -35,7 +35,7 @@ export function ProductCard({
 
   return (
     <div
-      className="group relative overflow-hidden rounded-2xl border border-jetta-metal/15 bg-jetta-graphite/60 transition-colors hover:border-jetta-blue/40"
+      className="group relative overflow-hidden rounded-2xl border border-jetta-metal/15 bg-jetta-graphite/60 transition-all duration-300 hover:border-jetta-blue/40 hover:shadow-[0_0_24px_rgba(24,191,255,0.25)]"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -50,6 +50,11 @@ export function ProductCard({
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
           )}
+          {/* Light sweep — PRD §7.4 "iluminar a borda" */}
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+          />
           <div className="absolute top-2 left-2 flex flex-col gap-1">
             {product.isNew && <Badge variant="new">Novo</Badge>}
             {hasPromotion && <Badge variant="promotion">-{discountPct}%</Badge>}
@@ -73,7 +78,7 @@ export function ProductCard({
           <div className="mt-2 flex items-baseline gap-2">
             {hasPromotion ? (
               <>
-                <span className="font-display text-base font-bold text-jetta-cyan">
+                <span className="font-display text-base font-bold text-jetta-cyan-text">
                   {formatCurrency(promoPrice!)}
                 </span>
                 <span className="text-xs text-jetta-metal line-through">
@@ -101,7 +106,7 @@ export function ProductCard({
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Falar sobre ${product.name} no WhatsApp`}
-          className="flex h-9 w-9 items-center justify-center rounded-full bg-jetta-wine text-jetta-ice hover:brightness-110"
+          className="flex h-9 w-9 items-center justify-center rounded-full bg-jetta-wine text-jetta-on-accent-light hover:brightness-110"
         >
           <MessageCircle className="h-4 w-4" />
         </a>

@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { buildWaLink } from "@/lib/whatsapp/waLink";
+import { CircuitLines } from "@/components/decor/CircuitLines";
+import { ParticleField } from "@/components/decor/ParticleField";
+import { GlowRings } from "@/components/decor/GlowRings";
 
 export function HeroShowcase({
   storeName,
@@ -25,6 +28,9 @@ export function HeroShowcase({
         className="object-cover opacity-60"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-jetta-black via-jetta-black/70 to-jetta-black/20" />
+      <CircuitLines className="text-jetta-blue opacity-70" />
+      <GlowRings />
+      <ParticleField />
 
       <div className="relative mx-auto flex max-w-3xl flex-col items-center gap-6 px-4 text-center">
         <span className="text-xs font-semibold tracking-[0.3em] text-jetta-gold uppercase">

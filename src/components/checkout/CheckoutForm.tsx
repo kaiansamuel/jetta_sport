@@ -28,7 +28,7 @@ function Field({
       </label>
       {children}
       {error && (
-        <p id={`${id}-error`} role="alert" className="mt-1 text-sm text-jetta-red">
+        <p id={`${id}-error`} role="alert" className="mt-1 text-sm text-jetta-red-text">
           {error}
         </p>
       )}
@@ -163,7 +163,7 @@ export function CheckoutForm({ items }: { items: CartItem[] }) {
       </Field>
 
       {serverError && (
-        <p role="alert" className="text-sm text-jetta-red">
+        <p role="alert" className="text-sm text-jetta-red-text">
           {serverError}
         </p>
       )}

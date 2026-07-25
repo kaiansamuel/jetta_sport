@@ -23,7 +23,7 @@ export default async function LancamentosPage({
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <p className="text-xs font-semibold tracking-wide text-jetta-blue uppercase">
+      <p className="text-xs font-semibold tracking-wide text-jetta-blue-text uppercase">
         Novos modelos. Nova energia.
       </p>
       <h1 className="font-display mt-1 text-2xl font-bold text-jetta-ice sm:text-3xl">

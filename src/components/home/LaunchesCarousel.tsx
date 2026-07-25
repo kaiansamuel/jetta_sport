@@ -25,7 +25,7 @@ export function LaunchesCarousel({
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-wide text-jetta-blue uppercase">
+            <p className="text-xs font-semibold tracking-wide text-jetta-blue-text uppercase">
               Novos modelos. Nova energia.
             </p>
             <h2 className="font-display mt-1 text-2xl font-bold text-jetta-ice">

@@ -24,7 +24,7 @@ export function ColorSelector({
             className={cn(
               "rounded-full border px-4 py-2 text-sm transition-colors",
               selected === color
-                ? "border-jetta-blue bg-jetta-blue/15 text-jetta-cyan"
+                ? "border-jetta-blue bg-jetta-blue/15 text-jetta-cyan-text"
                 : "border-jetta-metal/30 text-jetta-ice hover:border-jetta-blue",
             )}
           >

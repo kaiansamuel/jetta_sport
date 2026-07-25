@@ -1,19 +1,54 @@
 @import "tailwindcss";
 
 :root {
+  /* Surface/text tokens — theme-aware, overridden under [data-theme="light"] */
   --jetta-black: #05070a;
   --jetta-graphite: #11151c;
+  --jetta-ice: #f4f7fa;
+  --jetta-metal: #8e99a8;
+
+  /* Brand accent tokens — deliberately fixed across both themes. They're
+     used as button/badge backgrounds (which carry their own fixed
+     foreground via --jetta-on-accent below) far more often than as plain
+     text on the page surface, so keeping one value avoids the "accent
+     tuned bright for a dark bg reads as invisible on white" trap while
+     still covering the vast majority of usages correctly. */
   --jetta-blue: #18bfff;
   --jetta-cyan: #5debff;
   --jetta-gold: #dfae42;
   --jetta-gold-light: #ffd978;
   --jetta-wine: #8f1733;
   --jetta-red: #ff315f;
-  --jetta-ice: #f4f7fa;
-  --jetta-metal: #8e99a8;
+
+  /* Fixed text pairs for the accent backgrounds above — must NOT flip with
+     the surface theme, since accent backgrounds don't change brightness
+     between themes. Dark text for the bright accents (blue/cyan/gold),
+     light text for the one dark accent (wine). */
+  --jetta-on-accent-dark: #05070a;
+  --jetta-on-accent-light: #f4f7fa;
+
+  /* Theme-aware variants of blue/cyan for the handful of spots where they're
+     used as literal text directly on the page/card surface (links, prices)
+     rather than as a badge/button background with its own paired
+     foreground. --jetta-blue/cyan themselves stay fixed (see above) because
+     most of their usage IS backgrounds; only these two need to darken for
+     light mode, found via an axe-core contrast scan, not guessed. */
+  --jetta-blue-text: var(--jetta-blue);
+  --jetta-cyan-text: var(--jetta-cyan);
+  --jetta-red-text: var(--jetta-red);
 
   --background: var(--jetta-black);
   --foreground: var(--jetta-ice);
+}
+
+:root[data-theme="light"] {
+  --jetta-black: #f4f7fa;
+  --jetta-graphite: #e7ebf2;
+  --jetta-ice: #05070a;
+  --jetta-metal: #5b6674;
+  --jetta-blue-text: #00628f;
+  --jetta-cyan-text: #0b6870;
+  --jetta-red-text: #b3123a;
 }
 
 @theme inline {
@@ -27,6 +62,11 @@
   --color-jetta-red: var(--jetta-red);
   --color-jetta-ice: var(--jetta-ice);
   --color-jetta-metal: var(--jetta-metal);
+  --color-jetta-on-accent-dark: var(--jetta-on-accent-dark);
+  --color-jetta-on-accent-light: var(--jetta-on-accent-light);
+  --color-jetta-blue-text: var(--jetta-blue-text);
+  --color-jetta-cyan-text: var(--jetta-cyan-text);
+  --color-jetta-red-text: var(--jetta-red-text);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,6 +79,9 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {

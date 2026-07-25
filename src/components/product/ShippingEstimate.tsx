@@ -57,7 +57,7 @@ export function ShippingEstimate() {
         </Button>
       </form>
 
-      {error && <p className="mt-2 text-sm text-jetta-red">{error}</p>}
+      {error && <p className="mt-2 text-sm text-jetta-red-text">{error}</p>}
 
       {result && (
         <div className="mt-3 text-sm text-jetta-metal">

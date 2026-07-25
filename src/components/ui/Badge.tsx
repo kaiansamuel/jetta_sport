@@ -2,7 +2,7 @@ import type { HTMLAttributes } from "react";
 import { cn } from "@/lib/utils/cn";
 
 const variants = {
-  new: "bg-jetta-blue/15 text-jetta-cyan border-jetta-blue/40",
+  new: "bg-jetta-blue/15 text-jetta-cyan-text border-jetta-blue/40",
   promotion: "bg-jetta-wine/20 text-jetta-red border-jetta-wine/50",
   featured: "bg-jetta-gold/15 text-jetta-gold-light border-jetta-gold/40",
   neutral: "bg-jetta-graphite text-jetta-metal border-jetta-metal/30",

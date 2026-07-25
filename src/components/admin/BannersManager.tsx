@@ -213,7 +213,7 @@ export function BannersManager({ banners }: { banners: Banner[] }) {
             />
             Ativo
           </label>
-          {error && <p className="text-sm text-jetta-red">{error}</p>}
+          {error && <p className="text-sm text-jetta-red-text">{error}</p>}
           <div className="flex gap-2">
             <Button type="submit" size="sm" disabled={saving}>
               {editingId ? "Salvar" : (

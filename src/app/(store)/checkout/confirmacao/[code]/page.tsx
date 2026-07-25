@@ -54,7 +54,7 @@ export default async function CheckoutConfirmationPage({
   return (
     <div className="mx-auto max-w-xl px-4 py-20 text-center sm:px-6">
       <ClearCartOnMount />
-      <CheckCircle2 className="mx-auto h-12 w-12 text-jetta-cyan" />
+      <CheckCircle2 className="mx-auto h-12 w-12 text-jetta-cyan-text" />
       <h1 className="font-display mt-4 text-2xl font-bold text-jetta-ice">
         Pedido {order.code} registrado
       </h1>
@@ -89,7 +89,7 @@ export default async function CheckoutConfirmationPage({
         </div>
       </div>
 
-      <Link href="/catalogo" className="mt-8 inline-block text-sm text-jetta-blue hover:underline">
+      <Link href="/catalogo" className="mt-8 inline-block text-sm text-jetta-blue-text hover:underline">
         Continuar comprando
       </Link>
     </div>

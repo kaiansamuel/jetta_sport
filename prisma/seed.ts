@@ -82,18 +82,20 @@ const categoryNames = ["Corrida", "Casual", "Esportivo", "Lifestyle", "Infantil"
 
 async function seedCategories() {
   return Promise.all(
-    categoryNames.map((name) =>
-      prisma.category.upsert({
+    categoryNames.map((name) => {
+      const imageUrl = placeholderImage(`category-${slugify(name)}`, 900);
+      return prisma.category.upsert({
         where: { slug: slugify(name) },
-        update: {},
-        create: {
-          name,
-          slug: slugify(name),
-          isActive: true,
-          imageUrl: placeholderImage(`category-${slugify(name)}`, 900),
-        },
-      }),
-    ),
+        // Unlike AdminUser/StoreSettings (real admin-owned data we never
+        // want to clobber on reseed), category images are demo placeholder
+        // data — re-asserting it here is what caught this bug: imageUrl was
+        // added to the schema after categories already existed, so an
+        // empty `update: {}` silently left every pre-existing row at NULL
+        // on every subsequent `db seed` run.
+        update: { imageUrl },
+        create: { name, slug: slugify(name), isActive: true, imageUrl },
+      });
+    }),
   );
 }
 

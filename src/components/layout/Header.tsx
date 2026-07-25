@@ -9,6 +9,7 @@ import { buildWaLink } from "@/lib/whatsapp/waLink";
 import { useCartCount, useCartStore } from "@/store/cartStore";
 import { Button } from "@/components/ui/Button";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 
 const NAV_LINKS = [
@@ -82,6 +83,7 @@ export function Header({
           </nav>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle className="hidden sm:flex" />
             <Link
               href="/catalogo"
               aria-label="Buscar produtos"
@@ -97,7 +99,7 @@ export function Header({
             >
               <ShoppingBag className="h-5 w-5" />
               {hydrated && cartCount > 0 && (
-                <span className="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-jetta-blue px-1 text-[10px] font-bold text-jetta-black">
+                <span className="absolute top-1 right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-jetta-blue px-1 text-[10px] font-bold text-jetta-on-accent-dark">
                   {cartCount}
                 </span>
               )}

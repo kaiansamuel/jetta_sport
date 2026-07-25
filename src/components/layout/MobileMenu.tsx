@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 
 interface MobileMenuProps {
   open: boolean;
@@ -40,14 +41,17 @@ export function MobileMenu({ open, onClose, links, whatsappLink }: MobileMenuPro
               <span className="font-display text-sm font-bold tracking-widest text-jetta-ice uppercase">
                 Menu
               </span>
-              <button
-                type="button"
-                aria-label="Fechar menu"
-                onClick={onClose}
-                className="flex h-11 w-11 items-center justify-center rounded-full text-jetta-ice hover:text-jetta-red"
-              >
-                <X className="h-6 w-6" />
-              </button>
+              <div className="flex items-center gap-1">
+                <ThemeToggle />
+                <button
+                  type="button"
+                  aria-label="Fechar menu"
+                  onClick={onClose}
+                  className="flex h-11 w-11 items-center justify-center rounded-full text-jetta-ice hover:text-jetta-red"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
             </div>
 
             <nav className="flex flex-col gap-1">

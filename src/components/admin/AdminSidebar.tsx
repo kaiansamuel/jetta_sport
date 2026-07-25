@@ -40,7 +40,7 @@ export function AdminSidebar() {
                 className={cn(
                   "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-colors",
                   active
-                    ? "bg-jetta-blue/15 text-jetta-cyan"
+                    ? "bg-jetta-blue/15 text-jetta-cyan-text"
                     : "text-jetta-metal hover:bg-jetta-black/40 hover:text-jetta-ice",
                 )}
               >

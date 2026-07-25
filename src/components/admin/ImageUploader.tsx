@@ -99,7 +99,7 @@ export function ImageUploader({
         />
         <label
           htmlFor="image-upload-input"
-          className="inline-flex cursor-pointer items-center gap-2 text-xs text-jetta-blue hover:underline"
+          className="inline-flex cursor-pointer items-center gap-2 text-xs text-jetta-blue-text hover:underline"
         >
           <Upload className="h-3.5 w-3.5" />
           {uploading ? "Enviando..." : "ou enviar arquivo (requer Supabase configurado)"}

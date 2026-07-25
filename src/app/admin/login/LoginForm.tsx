@@ -39,7 +39,7 @@ export function LoginForm() {
           {...register("email")}
         />
         {errors.email && (
-          <p id="email-error" className="mt-1 text-sm text-jetta-red">
+          <p id="email-error" className="mt-1 text-sm text-jetta-red-text">
             {errors.email.message}
           </p>
         )}
@@ -57,14 +57,14 @@ export function LoginForm() {
           {...register("password")}
         />
         {errors.password && (
-          <p id="password-error" className="mt-1 text-sm text-jetta-red">
+          <p id="password-error" className="mt-1 text-sm text-jetta-red-text">
             {errors.password.message}
           </p>
         )}
       </div>
 
       {serverError && (
-        <p role="alert" className="text-sm text-jetta-red">
+        <p role="alert" className="text-sm text-jetta-red-text">
           {serverError}
         </p>
       )}

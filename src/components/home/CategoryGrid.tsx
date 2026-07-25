@@ -19,7 +19,7 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
             key={category.id}
             href={`/catalogo?categoria=${category.slug}`}
             onClick={() => track("category_click", { categorySlug: category.slug })}
-            className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-jetta-metal/15"
+            className="group relative aspect-[4/5] overflow-hidden rounded-2xl border border-jetta-metal/15 transition-shadow duration-300 hover:shadow-[0_0_30px_rgba(24,191,255,0.3)]"
           >
             {category.imageUrl && (
               <Image
@@ -31,6 +31,11 @@ export function CategoryGrid({ categories }: { categories: Category[] }) {
               />
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-jetta-black/90 via-jetta-black/20 to-transparent transition-colors group-hover:from-jetta-black/95" />
+            {/* Light sweep — PRD §7.3 "brilho lateral" */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+            />
             <div className="absolute inset-x-0 bottom-0 border-b-2 border-transparent p-4 transition-colors group-hover:border-jetta-blue">
               <span className="font-display text-sm font-bold tracking-wide text-jetta-ice uppercase transition-transform group-hover:translate-x-1">
                 {category.name}

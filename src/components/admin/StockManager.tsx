@@ -79,7 +79,7 @@ export function StockManager({
       </div>
 
       {duplicateKeys.size > 0 && (
-        <p className="mt-2 text-xs text-jetta-red">
+        <p className="mt-2 text-xs text-jetta-red-text">
           Existem combinações de cor + numeração repetidas.
         </p>
       )}

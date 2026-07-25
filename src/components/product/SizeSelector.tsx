@@ -31,7 +31,7 @@ export function SizeSelector({
                 disabled
                   ? "cursor-not-allowed border-jetta-metal/10 text-jetta-metal/40 line-through"
                   : selected === size
-                    ? "border-jetta-blue bg-jetta-blue/15 text-jetta-cyan"
+                    ? "border-jetta-blue bg-jetta-blue/15 text-jetta-cyan-text"
                     : "border-jetta-metal/30 text-jetta-ice hover:border-jetta-blue",
               )}
             >

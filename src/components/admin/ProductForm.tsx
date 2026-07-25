@@ -427,7 +427,7 @@ export function ProductForm({
         />
       </Card>
 
-      {error && <p className="text-sm text-jetta-red">{error}</p>}
+      {error && <p className="text-sm text-jetta-red-text">{error}</p>}
 
       <div className="flex gap-3">
         <Button type="submit" disabled={saving}>

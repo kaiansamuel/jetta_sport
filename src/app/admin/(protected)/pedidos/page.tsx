@@ -31,7 +31,7 @@ export default async function AdminPedidosPage({
       <div className="mt-4 flex flex-wrap gap-2">
         <Link
           href="/admin/pedidos"
-          className={`rounded-full border px-3 py-1.5 text-xs ${!validStatus ? "border-jetta-blue text-jetta-cyan" : "border-jetta-metal/30 text-jetta-metal"}`}
+          className={`rounded-full border px-3 py-1.5 text-xs ${!validStatus ? "border-jetta-blue text-jetta-cyan-text" : "border-jetta-metal/30 text-jetta-metal"}`}
         >
           Todos
         </Link>
@@ -39,7 +39,7 @@ export default async function AdminPedidosPage({
           <Link
             key={key}
             href={`/admin/pedidos?status=${key}`}
-            className={`rounded-full border px-3 py-1.5 text-xs ${validStatus === key ? "border-jetta-blue text-jetta-cyan" : "border-jetta-metal/30 text-jetta-metal"}`}
+            className={`rounded-full border px-3 py-1.5 text-xs ${validStatus === key ? "border-jetta-blue text-jetta-cyan-text" : "border-jetta-metal/30 text-jetta-metal"}`}
           >
             {label}
           </Link>
@@ -65,7 +65,7 @@ export default async function AdminPedidosPage({
                 <td className="p-3">
                   <Link
                     href={`/admin/pedidos/${order.id}`}
-                    className="text-jetta-blue hover:underline"
+                    className="text-jetta-blue-text hover:underline"
                   >
                     {order.code}
                   </Link>

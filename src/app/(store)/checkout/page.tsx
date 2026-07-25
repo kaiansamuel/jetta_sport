@@ -43,7 +43,7 @@ export default function CheckoutPage() {
         <div className="h-fit rounded-2xl border border-jetta-metal/15 bg-jetta-graphite/40 p-5">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold text-jetta-ice">Resumo do pedido</p>
-            <Link href="/carrinho" className="text-xs text-jetta-blue hover:underline">
+            <Link href="/carrinho" className="text-xs text-jetta-blue-text hover:underline">
               Editar carrinho
             </Link>
           </div>
