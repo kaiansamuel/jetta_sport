@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+:root {
+  --jetta-black: #05070a;
+  --jetta-graphite: #11151c;
+  --jetta-blue: #18bfff;
+  --jetta-cyan: #5debff;
+  --jetta-gold: #dfae42;
+  --jetta-gold-light: #ffd978;
+  --jetta-wine: #8f1733;
+  --jetta-red: #ff315f;
+  --jetta-ice: #f4f7fa;
+  --jetta-metal: #8e99a8;
+
+  --background: var(--jetta-black);
+  --foreground: var(--jetta-ice);
+}
+
+@theme inline {
+  --color-jetta-black: var(--jetta-black);
+  --color-jetta-graphite: var(--jetta-graphite);
+  --color-jetta-blue: var(--jetta-blue);
+  --color-jetta-cyan: var(--jetta-cyan);
+  --color-jetta-gold: var(--jetta-gold);
+  --color-jetta-gold-light: var(--jetta-gold-light);
+  --color-jetta-wine: var(--jetta-wine);
+  --color-jetta-red: var(--jetta-red);
+  --color-jetta-ice: var(--jetta-ice);
+  --color-jetta-metal: var(--jetta-metal);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-orbitron);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

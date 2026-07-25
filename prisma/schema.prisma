@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum OrderStatus {
+  INICIADO
+  ENVIADO_WHATSAPP
+  EM_ATENDIMENTO
+  CONFIRMADO
+  PAGO
+  ENVIADO
+  CONCLUIDO
+  CANCELADO
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("ADMIN")
+  createdAt    DateTime @default(now())
+
+  actions AdminActionLog[]
+}
+
+model Brand {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  logoUrl   String?
+  isActive  Boolean   @default(true)
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  slug      String    @unique
+  imageUrl  String?
+  isActive  Boolean   @default(true)
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id               String           @id @default(cuid())
+  name             String
+  slug             String           @unique
+  sku              String           @unique
+  description      String
+  shortDescription String
+  brandId          String
+  brand            Brand            @relation(fields: [brandId], references: [id])
+  categoryId       String
+  category         Category         @relation(fields: [categoryId], references: [id])
+  gender           String
+  style            String
+  material         String?
+  price            Decimal          @db.Decimal(10, 2)
+  promotionalPrice Decimal?         @db.Decimal(10, 2)
+  isFeatured       Boolean          @default(false)
+  isNew            Boolean          @default(false)
+  isPromotion      Boolean          @default(false)
+  isActive         Boolean          @default(true)
+  displayOrder     Int              @default(0)
+  images           ProductImage[]
+  variants         ProductVariant[]
+  orderItems       OrderItem[]
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@index([categoryId])
+  @@index([brandId])
+  @@index([isActive, isFeatured])
+  @@index([isActive, isNew])
+  @@index([isActive, isPromotion])
+}
+
+model ProductImage {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url       String
+  altText   String?
+  order     Int     @default(0)
+}
+
+model ProductVariant {
+  id         String      @id @default(cuid())
+  productId  String
+  product    Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  color      String
+  size       String
+  stock      Int         @default(0)
+  sku        String?
+  orderItems OrderItem[]
+
+  @@unique([productId, color, size])
+}
+
+model Order {
+  id             String      @id @default(cuid())
+  code           String      @unique
+  customerName   String
+  phone          String
+  zipCode        String?
+  city           String?
+  state          String?
+  neighborhood   String?
+  address        String?
+  addressNumber  String?
+  complement     String?
+  deliveryType   String?
+  notes          String?
+  subtotal       Decimal     @db.Decimal(10, 2)
+  status         OrderStatus @default(INICIADO)
+  origin         String?
+  whatsappSentAt DateTime?
+  items          OrderItem[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id          String         @id @default(cuid())
+  orderId     String
+  order       Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId   String
+  product     Product        @relation(fields: [productId], references: [id])
+  variantId   String
+  variant     ProductVariant @relation(fields: [variantId], references: [id])
+  productName String
+  imageUrl    String?
+  color       String
+  size        String
+  quantity    Int
+  unitPrice   Decimal        @db.Decimal(10, 2)
+  subtotal    Decimal        @db.Decimal(10, 2)
+}
+
+// Single-row counter, incremented inside the same transaction as order
+// creation (UPDATE ... RETURNING) to derive sequential order codes
+// (JS-{year}-{5-digit}) without relying on a raw Postgres SEQUENCE.
+model OrderSequence {
+  id      Int @id @default(1)
+  nextVal Int @default(1)
+}
+
+model Banner {
+  id           String    @id @default(cuid())
+  title        String
+  subtitle     String?
+  imageUrl     String
+  buttonLabel  String?
+  buttonLink   String?
+  placement    String
+  displayOrder Int       @default(0)
+  isActive     Boolean   @default(true)
+  startsAt     DateTime?
+  endsAt       DateTime?
+  createdAt    DateTime  @default(now())
+}
+
+model StoreSettings {
+  id                      Int      @id @default(1)
+  storeName               String   @default("Jetta Sport")
+  whatsappNumber          String
+  instagramUrl            String?
+  address                 String?
+  businessHours           String?
+  whatsappMessageTemplate String   @db.Text
+  exchangePolicy          String?  @db.Text
+  privacyPolicy           String?  @db.Text
+  shippingInfo            String?  @db.Text
+  primaryColor            String?
+  logoUrl                 String?
+  faviconUrl              String?
+  updatedAt               DateTime @updatedAt
+}
+
+model AnalyticsEvent {
+  id        String   @id @default(cuid())
+  // product_view | category_click | search | filter_applied | add_to_cart |
+  // remove_from_cart | checkout_start | whatsapp_sent | instagram_click | banner_click
+  type      String
+  metadata  Json?
+  sessionId String?
+  createdAt DateTime @default(now())
+
+  @@index([type, createdAt])
+}
+
+model AdminActionLog {
+  id          String    @id @default(cuid())
+  adminUserId String
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id])
+  // create | update | delete | status_change
+  action      String
+  entityType  String
+  entityId    String
+  metadata    Json?
+  createdAt   DateTime  @default(now())
+}
