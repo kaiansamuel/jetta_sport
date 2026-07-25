@@ -27,7 +27,7 @@ test("admin can log in, create a product, and see it live on the storefront", as
 
   await page
     .getByPlaceholder("Colar URL da imagem")
-    .fill("https://picsum.photos/seed/playwright-admin-test/400/400");
+    .fill("https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop&q=80");
   await page.getByRole("button", { name: "Adicionar", exact: true }).click();
 
   await page.getByRole("button", { name: "Adicionar variante" }).click();

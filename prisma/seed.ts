@@ -16,8 +16,86 @@ function slugify(value: string) {
     .replace(/(^-|-$)/g, "");
 }
 
+const SNEAKER_PRODUCT_IMAGES: Record<string, string[]> = {
+  "nike-air-zoom-pulse": [
+    "/images/products/nike-air-zoom-pulse-1.png",
+    "/images/products/nike-air-zoom-pulse-2.png",
+  ],
+  "nike-revolution-flux": [
+    "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "nike-court-vision-neo": [
+    "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "adidas-ultraboost-circuit": [
+    "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "adidas-superstar-chrome": [
+    "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "adidas-forum-ignite": [
+    "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "mizuno-wave-rider-prime": [
+    "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "mizuno-wave-sky-nova": [
+    "https://images.unsplash.com/photo-1582588678413-dbf45f4823e9?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "puma-rs-x-voltage": [
+    "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1512374382149-233c42b6a83b?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "puma-suede-classic-neon": [
+    "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "puma-velocity-nitro": [
+    "https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "new-balance-990-vector": [
+    "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "new-balance-fuelcell-rebel": [
+    "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "new-balance-fresh-foam-kids": [
+    "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1560769629-975ec94e6a86?w=1000&auto=format&fit=crop&q=80",
+  ],
+  "nike-star-runner-junior": [
+    "https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=1000&auto=format&fit=crop&q=80",
+  ],
+};
+
+const CATEGORY_IMAGES: Record<string, string> = {
+  corrida: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80",
+  casual: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=1000&auto=format&fit=crop&q=80",
+  esportivo: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=1000&auto=format&fit=crop&q=80",
+  lifestyle: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=1000&auto=format&fit=crop&q=80",
+  infantil: "https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=1000&auto=format&fit=crop&q=80",
+};
+
+function getProductSneakerImages(slug: string): string[] {
+  return SNEAKER_PRODUCT_IMAGES[slug] ?? [
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=1000&auto=format&fit=crop&q=80",
+    "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=1000&auto=format&fit=crop&q=80",
+  ];
+}
+
 function placeholderImage(seed: string, size = 800) {
-  return `https://picsum.photos/seed/${seed}/${size}/${size}`;
+  return `https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=${size}&auto=format&fit=crop&q=80`;
 }
 
 async function seedAdminUser() {
@@ -83,17 +161,12 @@ const categoryNames = ["Corrida", "Casual", "Esportivo", "Lifestyle", "Infantil"
 async function seedCategories() {
   return Promise.all(
     categoryNames.map((name) => {
-      const imageUrl = placeholderImage(`category-${slugify(name)}`, 900);
+      const slug = slugify(name);
+      const imageUrl = CATEGORY_IMAGES[slug] ?? placeholderImage(`category-${slug}`, 900);
       return prisma.category.upsert({
-        where: { slug: slugify(name) },
-        // Unlike AdminUser/StoreSettings (real admin-owned data we never
-        // want to clobber on reseed), category images are demo placeholder
-        // data — re-asserting it here is what caught this bug: imageUrl was
-        // added to the schema after categories already existed, so an
-        // empty `update: {}` silently left every pre-existing row at NULL
-        // on every subsequent `db seed` run.
+        where: { slug },
         update: { imageUrl },
-        create: { name, slug: slugify(name), isActive: true, imageUrl },
+        create: { name, slug, isActive: true, imageUrl },
       });
     }),
   );
@@ -311,36 +384,71 @@ async function seedProducts(
     const seed = productSeeds[i];
     const slug = slugify(seed.name);
     const sku = `JS-${String(i + 1).padStart(4, "0")}`;
+    const sneakerImages = getProductSneakerImages(slug);
 
-    const product = await prisma.product.upsert({
+    const existingProduct = await prisma.product.findUnique({
       where: { slug },
-      update: {},
-      create: {
-        name: seed.name,
-        slug,
-        sku,
-        description: `${seed.name} é um modelo ${seed.style.toLowerCase()} da ${seed.brand}, desenvolvido para quem busca estilo, desempenho e presença no dia a dia.`,
-        shortDescription: `${seed.style} · ${seed.brand}`,
-        brandId: brandByName.get(seed.brand)!,
-        categoryId: categoryByName.get(seed.category)!,
-        gender: seed.gender,
-        style: seed.style,
-        price: seed.price,
-        promotionalPrice: seed.promotionalPrice,
-        isFeatured: seed.isFeatured ?? false,
-        isNew: seed.isNew ?? false,
-        isPromotion: seed.isPromotion ?? false,
-        isActive: true,
-        displayOrder: i,
-        images: {
-          create: [0, 1].map((imgIndex) => ({
-            url: placeholderImage(`${slug}-${imgIndex}`),
-            altText: `${seed.name} - imagem ${imgIndex + 1}`,
-            order: imgIndex,
-          })),
-        },
-      },
     });
+
+    let product;
+    if (existingProduct) {
+      await prisma.productImage.deleteMany({ where: { productId: existingProduct.id } });
+      product = await prisma.product.update({
+        where: { id: existingProduct.id },
+        data: {
+          name: seed.name,
+          sku,
+          description: `${seed.name} é um modelo ${seed.style.toLowerCase()} da ${seed.brand}, desenvolvido para quem busca estilo, desempenho e presença no dia a dia.`,
+          shortDescription: `${seed.style} · ${seed.brand}`,
+          brandId: brandByName.get(seed.brand)!,
+          categoryId: categoryByName.get(seed.category)!,
+          gender: seed.gender,
+          style: seed.style,
+          price: seed.price,
+          promotionalPrice: seed.promotionalPrice,
+          isFeatured: seed.isFeatured ?? false,
+          isNew: seed.isNew ?? false,
+          isPromotion: seed.isPromotion ?? false,
+          isActive: true,
+          displayOrder: i,
+          images: {
+            create: sneakerImages.map((url, imgIndex) => ({
+              url,
+              altText: `${seed.name} - imagem ${imgIndex + 1}`,
+              order: imgIndex,
+            })),
+          },
+        },
+      });
+    } else {
+      product = await prisma.product.create({
+        data: {
+          name: seed.name,
+          slug,
+          sku,
+          description: `${seed.name} é um modelo ${seed.style.toLowerCase()} da ${seed.brand}, desenvolvido para quem busca estilo, desempenho e presença no dia a dia.`,
+          shortDescription: `${seed.style} · ${seed.brand}`,
+          brandId: brandByName.get(seed.brand)!,
+          categoryId: categoryByName.get(seed.category)!,
+          gender: seed.gender,
+          style: seed.style,
+          price: seed.price,
+          promotionalPrice: seed.promotionalPrice,
+          isFeatured: seed.isFeatured ?? false,
+          isNew: seed.isNew ?? false,
+          isPromotion: seed.isPromotion ?? false,
+          isActive: true,
+          displayOrder: i,
+          images: {
+            create: sneakerImages.map((url, imgIndex) => ({
+              url,
+              altText: `${seed.name} - imagem ${imgIndex + 1}`,
+              order: imgIndex,
+            })),
+          },
+        },
+      });
+    }
 
     let stockCursor = 0;
     for (const color of seed.colors) {
@@ -374,7 +482,7 @@ async function seedBanners() {
     {
       title: "O próximo nível começa nos seus pés.",
       subtitle: "Tênis selecionados para quem busca estilo, desempenho e presença.",
-      imageUrl: placeholderImage("banner-hero", 1600),
+      imageUrl: "https://images.unsplash.com/photo-1552346154-21d32810aba3?w=1600&auto=format&fit=crop&q=80",
       buttonLabel: "Explorar coleção",
       buttonLink: "/catalogo",
       placement: "hero",
@@ -383,7 +491,7 @@ async function seedBanners() {
     {
       title: "Ofertas que correm rápido.",
       subtitle: "Garanta seu modelo antes que a numeração acabe.",
-      imageUrl: placeholderImage("banner-promo", 1600),
+      imageUrl: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=1600&auto=format&fit=crop&q=80",
       buttonLabel: "Ver promoções",
       buttonLink: "/promocoes",
       placement: "promo",
@@ -395,7 +503,12 @@ async function seedBanners() {
     const existing = await prisma.banner.findFirst({
       where: { title: banner.title },
     });
-    if (!existing) {
+    if (existing) {
+      await prisma.banner.update({
+        where: { id: existing.id },
+        data: { imageUrl: banner.imageUrl },
+      });
+    } else {
       await prisma.banner.create({ data: banner });
     }
   }
